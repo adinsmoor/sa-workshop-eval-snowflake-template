@@ -3,9 +3,6 @@ version: 2
 models:
   - name: fct_order_items
     description: order items fact table
-    tests:
-    - dbt_expectations.expect_table_row_count_to_equal_other_table:
-        compare_model: ref("order_items")
 
     columns:
       - name: order_item_key
@@ -29,14 +26,8 @@ models:
       - name: discount_percentage
       - name: discounted_price
       - name: tax_rate
-        tests:
-          - dbt_expectations.expect_column_values_to_be_between:
-              min_value: 0  # (Optional)
-              max_value: 1 # (Optional)
       - name: order_item_count
       - name: quantity
-        tests:
-          - is_in_increment_of_five
       - name: gross_item_sales_amount
       - name: discounted_item_sales_amount
       - name: item_discount_amount
